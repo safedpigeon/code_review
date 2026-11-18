@@ -1,7 +1,7 @@
 # Agent Knowledge Base: Code Review Curriculum Development
 
 ## 🎯 Project Vision
-This project is a curated educational repository designed to teach software engineering excellence. Instead of providing just "perfect" code, it utilizes a pedagogical "Before and After" approach. By intentionally implementing common anti-patterns and then refactoring them under the guidance of a Staff-level review, students can learn not just *what* a design pattern is, but *why* it is necessary and *how* to identify the smells that trigger its use.
+This project is a curated educational repository designed to teach software engineering excellence. Instead of providing just \"perfect\" code, it utilizes a pedagogical \"Before and After\" approach. By intentionally implementing common anti-patterns and then refactoring them under the guidance of a Staff-level review, students can learn not just *what* a design pattern is, but *why* it is necessary and *how* to identify the smells that trigger its use.
 
 ## 📚 The Curriculum (30 Lessons)
 The curriculum is divided into modules, each focusing on a specific area of software craftsmanship. 
@@ -14,10 +14,10 @@ The curriculum is divided into modules, each focusing on a specific area of soft
 5.  **Inefficient Data Structures**: Optimizing time/space complexity in business logic.
 
 ### Module 2: Object-Oriented Design Patterns (SOLID)
-6.  **Single Responsibility Principle (SRP)**: Refactoring classes that do "too much."
+6.  **Single Responsibility Principle (SRP)**: Refactoring classes that do \"too much.\"
 7.  **Open/Closed Principle (OCP)**: Using Strategy/Template patterns to allow extension without modification.
 8.  **Liskov Substitution Principle (LSP)**: Fixing broken inheritance hierarchies.
-9.  **Interface Segregation Principle (ISP)**: Splitting "Fat Interfaces" into lean, client-specific ones.
+9.  **Interface Segregation Principle (ISP)**: Splitting \"Fat Interfaces\" into lean, client-specific ones.
 10. **Dependency Inversion Principle (DIP)**: High-level modules depending on abstractions, not concretions.
 
 ### Module 3: Behavioral & Creational Patterns
@@ -38,7 +38,7 @@ The curriculum is divided into modules, each focusing on a specific area of soft
 21. **Lack of Logging/Observability**: Implementing structured logging and tracing.
 22. **Poor API Design**: Refactoring REST endpoints for consistency and versioning.
 23. **Security Vulnerabilities**: Fixing common flaws (e.g., SQL injection, XSS) via architectural guards.
-24. **Testing Debt**: Moving from "no tests" to a Pyramid approach (Unit $\rightarrow$ Integration $\rightarrow$ E2E).
+24. **Testing Debt**: Moving from \"no tests\" to a Pyramid approach (Unit $\rightarrow$ Integration $\rightarrow$ E2E).
 25. **Synchronous Bottlenecks**: Introducing Asynchronous processing/Message Queues.
 
 ### Module 6: Advanced Refactoring & Maintenance
@@ -54,23 +54,26 @@ For every lesson, the following workflow must be strictly followed. **Crucially,
 ### Step 1: Branching
 - Create a new feature branch: `feature/module-X-problem-Y`.
 
-### Step 2: Iteration 1 (Bad Code)
-- **Goal**: Functional but "Naive" code.
+### Step 2: Iteration 1 (Bad Code) $\rightarrow$ **PAUSE POINT 1**
+- **Goal**: Functional but \"Naive\" code.
 - **Characteristics**:
     - Must run and pass basic functional requirements.
     - Must clearly exhibit the target anti-pattern.
-    - Should resemble "Junior/Mid-level" code that prioritizes "making it work" over "making it right."
+    - Should resemble \"Junior/Mid-level\" code that prioritizes \"making it work\" over \"making it right.\"
+- **Action**: Commit and Push this version. Create a Pull Request (PR).
+- **STOP**: You must stop here and wait for the review phase to begin.
 
-### Step 3: Staff-Level Review
+### Step 3: Staff-Level Review $\rightarrow$ **PAUSE POINT 2**
 - **Persona**: Staff Software Engineer / Architect.
-- **Action**: Conduct a rigorous, pedagogical code review.
+- **Action**: Conduct a rigorous, pedagogical code review via inline comments on the PR.
 - **Requirements**:
-    - Use specific terminology (e.g., "Temporal Coupling," "Cyclomatic Complexity").
+    - Use specific terminology (e.g., \"Temporal Coupling,\" \"Cyclomatic Complexity\").
     - Reference SOLID and other industry standards.
-    - Explain the *business risk* (e.g., "This will increase the time-to-market for new features because...").
+    - Explain the *business risk* (e.g., \"This will increase the time-to-market for new features because...\").
+- **STOP**: Do not proceed to refactoring until the review is complete and acknowledged.
 
 ### Step 4: Iteration 2 (Production-Grade Refactor)
-- **Goal**: Transform the "Before" into "After."
+- **Goal**: Transform the \"Before\" into \"After.\"
 - **Standards**:
     - **Decoupling**: High use of interfaces and DI.
     - **Modularization**: Clear boundaries between layers (API $\rightarrow$ Service $\rightarrow$ Repository).
@@ -78,7 +81,7 @@ For every lesson, the following workflow must be strictly followed. **Crucially,
 
 ### Step 5: Verification & Push
 - Verify functionality.
-- Commit with a clear "Before $\rightarrow$ After" narrative.
+- Commit with a clear \"Before $\rightarrow$ After\" narrative.
 - Push to remote (when online).
 
 ## 🛠️ Quality Matrix
@@ -94,4 +97,3 @@ For every lesson, the following workflow must be strictly followed. **Crucially,
 ## 📚 Current State
 - **Current Progress**: Completed Module 1, Problem 1 (God Class).
 - **Remaining**: 29 Lessons.
-

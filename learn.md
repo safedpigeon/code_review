@@ -1,6 +1,6 @@
 # Execution Guide: Lessons Learned & Technical Guardrails
 
-This document serves as an operational manual for AI agents (Cline) working on this repository. It documents technical pitfalls encountered during early development and provides the "golden path" for executing the curriculum to avoid repetitive mistakes.
+This document serves as an operational manual for AI agents (Cline) working on this repository. It documents technical pitfalls encountered during early development and provides the \"golden path\" for executing the curriculum to avoid repetitive mistakes.
 
 ## ⚠️ Technical Gotchas & Fixes
 
@@ -11,7 +11,7 @@ This document serves as an operational manual for AI agents (Cline) working on t
 - If a file should live in `main` but is currently modified in a feature branch:
     1. Commit it to the feature branch first, then checkout `main` and merge/cherry-pick.
     2. OR, remove/stash the local change before switching.
-- **Rule**: Never leave "global" documentation files in a dirty state when moving between feature branches.
+- **Rule**: Never leave \"global\" documentation files in a dirty state when moving between feature branches.
 
 ### 2. Precise File Editing (The `editor` Tool)
 **The Problem**: The `editor` tool fails if `old_text` is omitted for an existing file or if the `old_text` does not match the file content exactly (case-sensitive, whitespace-sensitive).
@@ -31,26 +31,28 @@ This document serves as an operational manual for AI agents (Cline) working on t
 - This ensures the curriculum is language-agnostic and demonstrates that architectural patterns apply across different paradigms.
 - Ensure the directory structure reflects this: `module-X/problem-Y/java/...` and `module-X/problem-Y/python/...`.
 
-## 🛠️ Operational Workflow (The "Golden Path")
+## 🛠️ Operational Workflow (The \"Golden Path\")
 
 ### Lesson Implementation Cycle (Git-Centric Approach)
 To ensure the pedagogical value of the curriculum, the **Git history must tell the story**. Do not bundle all work into a single commit.
 
 1. **Branch**: `git checkout -b feature/module-X-problem-Y`.
-2. **Iteration 1 (The "Naive" implementation)**:
+2. **Iteration 1 (The \"Naive\" implementation)**:
     - Implement the problem in **both Java and Python**.
     - Focus on functionality first.
     - Intentionally introduce the anti-pattern. 
-    - **COMMIT**: `git add .` -> `git commit -m "feat: iteration 1 - naive implementation of [Problem Name]"`
+    - **COMMIT**: `git add .` -> `git commit -m \"feat: iteration 1 - naive implementation of [Problem Name]\"`
     - **PUSH & PR**: `git push origin feature/module-X-problem-Y` -> `gh pr create` to establish the review baseline.
+    - 🛑 **STRICT STOP RULE**: You MUST stop here. Do not proceed to the review or refactor in the same turn. Wait for user confirmation or review comments on the PR.
 3. **Staff Review (Inline Comments)**:
     - **DO NOT** create `review.md` or other documentation files inside the feature branch.
     - **ACTION**: Use the GitHub API (`gh api`) or GitHub UI to add **inline comments** directly to the Iteration 1 commit in the PR.
     - This mirrors real-world professional code reviews and keeps the repository clean of metadata files.
-4. **Iteration 2 (The "Production" implementation)**:
+    - 🛑 **STRICT STOP RULE**: After performing the review, stop and wait for the "Green Light" to begin refactoring.
+4. **Iteration 2 (The \"Production\" implementation)**:
     - Implement the refactor in **both Java and Python** based on the inline review comments.
     - Apply SOLID principles and Design Patterns.
-    - **COMMIT**: `git add .` -> `git commit -m "feat: iteration 2 - production-grade refactor"`
+    - **COMMIT**: `git add .` -> `git commit -m \"feat: iteration 2 - production-grade refactor\"`
     - **PUSH**: `git push origin feature/module-X-problem-Y`.
 5. **Verification & Finalization**:
     - Run the code to ensure no regressions.

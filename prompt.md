@@ -15,8 +15,13 @@ The agent should:
 1. Read `Agent.md` and `learn.md`.
 2. Acknowledge the project vision, the 30-lesson map, and the language parity requirement (Java & Python).
 3. Await instructions on which specific problem to implement.
-4. Once assigned, create the appropriate feature branch (e.g., `feature/module-X-problem-Y`).
-5. Implement Iteration 1 (Naive code) in both Java and Python.
-6. Create a PR and perform a Staff-level Review using inline comments via `gh api` or GitHub UI.
-7. Implement Iteration 2 (Refactored code) in both Java and Python.
-8. Verify and push the final changes.
+4. Once assigned:
+    a. Create the appropriate feature branch.
+    b. Implement Iteration 1 (Naive code) in both Java and Python.
+    c. Commit, Push, and create a Pull Request.
+    d. **STOP** and wait for user feedback/review.
+5. Upon receiving feedback/review:
+    a. Perform Staff-level Review using inline comments via `gh api` or GitHub UI (if requested to do the review itself).
+    b. Implement Iteration 2 (Refactored code) in both Java and Python.
+    c. Commit, Push, and finalize the PR.
+6. Verify and push the final changes.
