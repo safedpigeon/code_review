@@ -26,23 +26,35 @@ This document serves as an operational manual for AI agents (Cline) working on t
 - Feature branches are treated as Pull Requests for specific lessons. They should contain *only* the code for that lesson.
 - All project-wide documentation, curriculum maps, and guidelines must reside in the `main` branch.
 
+### 4. Language Parity
+**The Requirement**: Every lesson must be implemented in **both Java and Python**.
+- This ensures the curriculum is language-agnostic and demonstrates that architectural patterns apply across different paradigms.
+- Ensure the directory structure reflects this: `module-X/problem-Y/java/...` and `module-X/problem-Y/python/...`.
+
 ## 🛠️ Operational Workflow (The "Golden Path")
 
-### Lesson Implementation Cycle
-To ensure the pedagogical value of the curriculum, do not skip steps:
+### Lesson Implementation Cycle (Git-Centric Approach)
+To ensure the pedagogical value of the curriculum, the **Git history must tell the story**. Do not bundle all work into a single commit.
+
 1. **Branch**: `git checkout -b feature/module-X-problem-Y`.
 2. **Iteration 1 (The "Naive" implementation)**:
+    - Implement the problem in **both Java and Python**.
     - Focus on functionality first.
     - Intentionally introduce the anti-pattern. 
-    - **Mistake to avoid**: Making the code "too good" too early. It must be "Junior-level" code that works but is hard to maintain.
-3. **Staff Review**:
-    - Do not just "fix" the code.
-    - Write a detailed architectural critique. Use terms like *Cyclomatic Complexity*, *Temporal Coupling*, and *Liskov Substitution*.
-    - Explain *why* the current approach will fail in a production environment (scaling, testing, etc.).
+    - **COMMIT**: `git add .` -> `git commit -m "feat: iteration 1 - naive implementation of [Problem Name]"`
+    - **PUSH & PR**: `git push origin feature/module-X-problem-Y` -> `gh pr create` to establish the review baseline.
+3. **Staff Review (Inline Comments)**:
+    - **DO NOT** create `review.md` or other documentation files inside the feature branch.
+    - **ACTION**: Use the GitHub API (`gh api`) or GitHub UI to add **inline comments** directly to the Iteration 1 commit in the PR.
+    - This mirrors real-world professional code reviews and keeps the repository clean of metadata files.
 4. **Iteration 2 (The "Production" implementation)**:
-    - Implement the refactor based on the Staff Review.
+    - Implement the refactor in **both Java and Python** based on the inline review comments.
     - Apply SOLID principles and Design Patterns.
-5. **Verification**: Run the code to ensure no regressions were introduced during refactoring.
+    - **COMMIT**: `git add .` -> `git commit -m "feat: iteration 2 - production-grade refactor"`
+    - **PUSH**: `git push origin feature/module-X-problem-Y`.
+5. **Verification & Finalization**:
+    - Run the code to ensure no regressions.
+    - Ensure the PR narrative clearly shows the transition from Naive -> Reviewed -> Refactored.
 
 ### Network & Connectivity
 - **Offline Mode**: This project may be developed in environments with intermittent internet.

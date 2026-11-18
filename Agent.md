@@ -49,7 +49,7 @@ The curriculum is divided into modules, each focusing on a specific area of soft
 30. **The Capstone**: A full-scale refactor of a legacy system applying all previous lessons.
 
 ## 🔄 The Lesson Development Cycle
-For every lesson, the following workflow must be strictly followed:
+For every lesson, the following workflow must be strictly followed. **Crucially, every lesson must be implemented in both Java and Python to ensure language-agnostic architectural patterns.**
 
 ### Step 1: Branching
 - Create a new feature branch: `feature/module-X-problem-Y`.

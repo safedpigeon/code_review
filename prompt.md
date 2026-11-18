@@ -15,9 +15,9 @@ Follow the 'Lesson Development Cycle' exactly as defined in the documentation."
 ## Expected Behavior
 The agent should:
 1. Read `Agent.md` and `learn.md`.
-2. Acknowledge the project vision and the 30-lesson map.
+2. Acknowledge the project vision, the 30-lesson map, and the language parity requirement (Java & Python).
 3. Identify that it needs to create a branch `feature/module-1-problem-2`.
-4. Implement Iteration 1 (Naive code).
-5. Perform a Staff-level Review.
-6. Implement Iteration 2 (Refactored code).
-7. Verify and commit.
+4. Implement Iteration 1 (Naive code) in both Java and Python.
+5. Create a PR and perform a Staff-level Review using inline comments via `gh api` or GitHub UI.
+6. Implement Iteration 2 (Refactored code) in both Java and Python.
+7. Verify and push the final changes.
