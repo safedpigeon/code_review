@@ -1,43 +1,32 @@
 package module1.problem01;
 
-import java.util.*;
-import java.io.*;
-
 public class UserService {
-    
-    // The "God Class" - handles everything related to users
+    private final UserValidator validator;
+    private final UserRepository userRepository;
+    private final EmailService emailService;
+    private final AuditLogger auditLogger;
+
+    public UserService(UserValidator validator, UserRepository userRepository, EmailService emailService, AuditLogger auditLogger) {
+        this.validator = validator;
+        this.userRepository = userRepository;
+        this.emailService = emailService;
+        this.auditLogger = auditLogger;
+    }
+
     public void registerUser(String username, String email, String password) {
         System.out.println("Starting user registration for: " + username);
 
-        // 1. Validation Logic
-        if (username == null || username.length() < 3) {
-            throw new IllegalArgumentException("Invalid username");
-        }
-        if (!email.contains("@")) {
-            throw new IllegalArgumentException("Invalid email");
-        }
-        if (password == null || password.length() < 8) {
-            throw new IllegalArgumentException("Password too short");
-        }
+        // 1. Validation
+        validator.validate(username, email, password);
 
-        // 2. Database Logic (Persistence)
-        System.out.println("Connecting to Database...");
-        System.out.println("INSERT INTO users (username, email, password) VALUES ('" + username + "', '" + email + "', '" + password + "');");
-        System.out.println("User saved to database successfully.");
+        // 2. Persistence
+        userRepository.saveUser(username, email, password);
 
-        // 3. Email Logic (Notification)
-        System.out.println("Connecting to SMTP Server...");
-        System.out.println("Sending welcome email to " + email + ": 'Welcome to our platform, " + username + "!'");
-        System.out.println("Email sent.");
+        // 3. Notification
+        emailService.sendWelcomeEmail(email, username);
 
-        // 4. Logging Logic (Audit)
-        try {
-            FileWriter writer = new FileWriter("user_audit.log", true);
-            writer.write("User " + username + " registered at " + new Date() + "\n");
-            writer.close();
-        } catch (IOException e) {
-            System.err.println("Failed to write to audit log: " + e.getMessage());
-        }
+        // 4. Audit Logging
+        auditLogger.logUserRegistration(username);
 
         System.out.println("User registration completed successfully.");
     }

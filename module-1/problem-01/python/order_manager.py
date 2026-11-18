@@ -1,52 +1,56 @@
-import datetime
-import re
+from order_validator import OrderValidator
+from payment_service import PaymentService
+from inventory_service import InventoryService
+from shipping_service import ShippingService
+from notification_service import NotificationService
+from audit_logger import AuditLogger
 
 class OrderManager:
     """
-    The God Class - Handles every aspect of the order lifecycle.
+    The Orchestrator - coordinates between specialized services to process an order.
     """
+
+    def __init__(self, validator, payment_service, inventory_service, shipping_service, notification_service, audit_logger):
+        self.validator = validator
+        self.payment_service = payment_service
+        self.inventory_service = inventory_service
+        self.shipping_service = shipping_service
+        self.notification_service = notification_service
+        self.audit_logger = audit_logger
 
     def process_order(self, order_id, user_email, items, credit_card_details):
         print(f"Processing order {order_id}...")
 
-        # 1. Validation Logic
-        if not items or len(items) == 0:
-            raise ValueError("Order must contain at least one item.")
-        
-        if not re.match(r"[^@]+@[^@]+\.[^@]+", user_email):
-            raise ValueError("Invalid email address.")
+        # 1. Validation
+        self.validator.validate(user_email, items)
 
-        # 2. Payment Processing Logic
-        print(f"Connecting to Payment Gateway for card {credit_card_details['number']}...")
-        # Simulate payment API call
-        payment_success = True 
-        if not payment_success:
-            raise Exception("Payment failed!")
-        print("Payment processed successfully.")
+        # 2. Payment Processing
+        self.payment_service.process_payment(credit_card_details)
 
-        # 3. Inventory Management Logic
-        for item in items:
-            print(f"Updating inventory for item {item['id']}: reducing stock by {item['quantity']}.")
-            # Simulate DB call: UPDATE inventory SET stock = stock - qty WHERE id = item_id
+        # 3. Inventory Management
+        self.inventory_service.update_inventory(items)
 
-        # 4. Shipping Calculation Logic
-        shipping_cost = 0
-        for item in items:
-            shipping_cost += item['weight'] * 0.5
-        print(f"Total shipping cost calculated: ${shipping_cost}")
+        # 4. Shipping Calculation
+        self.shipping_service.calculate_shipping(items)
 
-        # 5. Notification Logic
-        print(f"Connecting to Email Service...")
-        print(f"Sending confirmation email to {user_email}: 'Your order {order_id} is confirmed!'")
+        # 5. Notification
+        self.notification_service.send_confirmation_email(user_email, order_id)
 
         # 6. Audit Logging
-        with open("order_logs.txt", "a") as log_file:
-            log_file.write(f"[{datetime.datetime.now()}] Order {order_id} processed for {user_email}\n")
+        self.audit_logger.log_order(order_id, user_email)
 
         print("Order processing completed successfully.")
 
 if __name__ == "__main__":
-    manager = OrderManager()
+    # Dependency Injection
+    manager = OrderManager(
+        OrderValidator(),
+        PaymentService(),
+        InventoryService(),
+        ShippingService(),
+        NotificationService(),
+        AuditLogger()
+    )
     try:
         manager.process_order(
             order_id="ORD-123",
