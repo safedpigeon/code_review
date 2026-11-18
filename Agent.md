@@ -60,17 +60,19 @@ For every lesson, the following workflow must be strictly followed. **Crucially,
     - Must run and pass basic functional requirements.
     - Must clearly exhibit the target anti-pattern.
     - Should resemble \"Junior/Mid-level\" code that prioritizes \"making it work\" over \"making it right.\"
-- **Action**: Commit and Push this version. Create a Pull Request (PR).
-- **STOP**: You must stop here and wait for the review phase to begin.
+- **MANDATORY ACTION**: Complete the full sequence: `git add .` $\rightarrow$ `git commit` $\rightarrow$ `git push` $\rightarrow$ `gh pr create`. 
+- **VERIFICATION**: Verify the PR is successfully created before proceeding.
+- **CONTINUATION**: Once the PR is live, immediately transition to the **Review Phase**: use `gh api` or the GitHub UI to add inline comments to the Iteration 1 commit, identifying anti-patterns and areas for improvement.
+- **REFACTOR**: After all review comments are posted, proceed immediately to **Iteration 2** to implement the production-grade refactor based on those comments.
 
-### Step 3: Staff-Level Review $\rightarrow$ **PAUSE POINT 2**
+### Step 3: Staff-Level Review
 - **Persona**: Staff Software Engineer / Architect.
 - **Action**: Conduct a rigorous, pedagogical code review via inline comments on the PR.
 - **Requirements**:
     - Use specific terminology (e.g., \"Temporal Coupling,\" \"Cyclomatic Complexity\").
     - Reference SOLID and other industry standards.
     - Explain the *business risk* (e.g., \"This will increase the time-to-market for new features because...\").
-- **STOP**: Do not proceed to refactoring until the review is complete and acknowledged.
+- **CONTINUATION**: Once the review is complete and the critiques are posted, proceed immediately to Iteration 2.
 
 ### Step 4: Iteration 2 (Production-Grade Refactor)
 - **Goal**: Transform the \"Before\" into \"After.\"

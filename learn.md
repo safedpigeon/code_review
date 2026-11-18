@@ -43,12 +43,12 @@ To ensure the pedagogical value of the curriculum, the **Git history must tell t
     - Intentionally introduce the anti-pattern. 
     - **COMMIT**: `git add .` -> `git commit -m \"feat: iteration 1 - naive implementation of [Problem Name]\"`
     - **PUSH & PR**: `git push origin feature/module-X-problem-Y` -> `gh pr create` to establish the review baseline.
-    - 🛑 **STRICT STOP RULE**: You MUST stop here. Do not proceed to the review or refactor in the same turn. Wait for user confirmation or review comments on the PR.
+    - **VERIFICATION**: Verify that the PR has been successfully created before moving to the review phase.
 3. **Staff Review (Inline Comments)**:
     - **DO NOT** create `review.md` or other documentation files inside the feature branch.
     - **ACTION**: Use the GitHub API (`gh api`) or GitHub UI to add **inline comments** directly to the Iteration 1 commit in the PR.
     - This mirrors real-world professional code reviews and keeps the repository clean of metadata files.
-    - 🛑 **STRICT STOP RULE**: After performing the review, stop and wait for the "Green Light" to begin refactoring.
+    - **CONTINUATION**: Once all critical anti-patterns are commented on, proceed immediately to Iteration 2.
 4. **Iteration 2 (The \"Production\" implementation)**:
     - Implement the refactor in **both Java and Python** based on the inline review comments.
     - Apply SOLID principles and Design Patterns.

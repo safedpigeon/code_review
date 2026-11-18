@@ -18,10 +18,7 @@ The agent should:
 4. Once assigned:
     a. Create the appropriate feature branch.
     b. Implement Iteration 1 (Naive code) in both Java and Python.
-    c. Commit, Push, and create a Pull Request.
-    d. **STOP** and wait for user feedback/review.
-5. Upon receiving feedback/review:
-    a. Perform Staff-level Review using inline comments via `gh api` or GitHub UI (if requested to do the review itself).
-    b. Implement Iteration 2 (Refactored code) in both Java and Python.
-    c. Commit, Push, and finalize the PR.
-6. Verify and push the final changes.
+    c. Complete the sequence: Commit $\rightarrow$ Push $\rightarrow$ Create Pull Request and verify its success.
+    d. Perform Staff-level Review by adding inline comments via `gh api` or GitHub UI. Ensure comments are made on the affected line of code.
+    e. Implement Iteration 2 (Refactored code) in both Java and Python based on those comments.
+    f. Commit, Push, and finalize the PR.
