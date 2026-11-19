@@ -60,8 +60,10 @@ Master the ability to review code through the lens of:
 
 As an AI Agent, your job is to help with curriculum development, one problem at a time. In the Prompt, you would have received instructions what module to develop. As an AI Agent, you should follow the following Steps in order, starting from Step 1, then Step 2, then Step 3, then Step 4 and finally Step 5. 
 
+GitHub Repository : [safedpigeon/code_review](https://github.com/safedpigeon/code_review/)
+
 ### Step 1: Branching
-- Create a new feature branch: `git checkout -b feature/module-X-problem-Y`.
+- Create a new feature branch: `git checkout -b feature/module-X-problem-Y`. It might happen that another Agent also tried to create this branch on remote, if previous implementation is present, disregard/delete it and start afresh.
 
 ### Step 2: Iteration 1 (The "Naive" Implementation)
 - **Persona**: Junior Software Developer.
@@ -70,17 +72,18 @@ As an AI Agent, your job is to help with curriculum development, one problem at 
     - Must run and pass basic functional requirements.
     - Must clearly exhibit the target anti-pattern (resembling Junior/Mid-level code).
 - **Action**: Implement in **both Java and Python**.
-- **Execution**: `git add .` $\rightarrow$ `git commit -m "feat: iteration 1 - naive implementation"` $\rightarrow$ `git push` $\rightarrow$ `gh pr create`.
+- **Execution**: `git add .` $\rightarrow$ `git commit -m "feat: iteration 1 - naive implementation"` $\rightarrow$ `git push` $\rightarrow$ `gh pr create`. Ensure only .py or .java files are commited, and temp files are cleaned up.
 - **VERIFICATION**: Verify the PR is successfully created before proceeding. Once PR creation is verified, move to Step 3
 
 ### Step 3: Staff-Level Review (Inline Comments)
 - **Persona**: Staff Software Engineer / Architect at Google.
-- **Action**: Being an AI Agent assuming the above persona, Conduct a rigorous, pedagogical code review via **inline comments** on the PR raised in Step 2. Ensure comments are being generated on the Pull Request on the actual location of the problem.
+- **Action**: Being an AI Agent assuming the above persona, Conduct a rigorous, pedagogical code review via **inline comments** on the PR raised in Step 2. Ensure comments are being generated on the Pull Request on the actual location of the problem. Follow this documentation for creating PRs: https://docs.github.com/en/rest/pulls/reviews?apiVersion=2026-03-10
+
 - **Requirements**:
     - Use specific terminology (e.g., "Temporal Coupling," "Cyclomatic Complexity").
     - Reference SOLID and other industry standards.
     - Explain the *business risk* (e.g., "This will increase the time-to-market...").
-- **CONTINUATION**: Once the critiques are posted via `gh api` or UI on Iteration 1 of Pull Request, proceed to Step 4.
+- **CONTINUATION**: Once the critiques are posted on Iteration 1 of Pull Request, proceed to Step 4.
 
 ### Step 4: Iteration 2 (Production-Grade Refactor)
 - **Persona**: Staff Software Engineer / Architect at Google.
