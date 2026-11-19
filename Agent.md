@@ -67,25 +67,17 @@ GitHub Repository : [safedpigeon/code_review](https://github.com/safedpigeon/cod
 
 ### Step 2: Iteration 1 (The "Naive" Implementation)
 - **Persona**: Junior Software Developer.
-- **Goal**: Implement Functional but "Naive" code in both Java and Python. Once Implemented create a Pull Request on Github which would serve as Iteration 1 for learning the anti pattern.
+- **Goal**: Implement Functional but "Naive" code in both Java and Python. Once Implemented create a Pull Request on Github which would serve as Iteration 1 for learning the anti pattern. Ensure only .py or .java files are commited, not temporary files like .pyc.
 - **Characteristics**:
     - Must run and pass basic functional requirements.
     - Must clearly exhibit the target anti-pattern (resembling Junior/Mid-level code).
 - **Action**: Implement in **both Java and Python**.
-- **Execution**: `git add .` $\rightarrow$ `git commit -m "feat: iteration 1 - naive implementation"` $\rightarrow$ `git push` $\rightarrow$ `gh pr create`. Ensure only .py or .java files are commited, not temporary files like .pyc.
+- **Execution**: `git add .` $\rightarrow$ `git commit -m "feat: iteration 1 - naive implementation"` $\rightarrow$ `git push` $\rightarrow$ `gh pr create`. 
 - **VERIFICATION**: Verify the PR is successfully created before proceeding. Once PR creation is verified, move to Step 3
 
 ### Step 3: Staff-Level Review (Inline Comments)
 - **Persona**: Staff Software Engineer / Architect at Google.
-- **Action**: Being an AI Agent assuming the above persona, Conduct a rigorous, pedagogical code review via **inline comments** on the PR raised in Step 2. Ensure comments are being generated on the Pull Request on the actual location of the problem. 
-
-Important: Follow this documentation for creating PRs: https://docs.github.com/en/rest/pulls/reviews?apiVersion=2026-03-10 , don't rely on any other ways to create PR. fetch the content of the documentation if needed.
-
-- **Requirements**:
-    - Use specific terminology (e.g., "Temporal Coupling," "Cyclomatic Complexity").
-    - Reference SOLID and other industry standards.
-    - Explain the *business risk* (e.g., "This will increase the time-to-market...").
-- **CONTINUATION**: Once the critiques are posted on Iteration 1 of Pull Request, proceed to Step 4.
+- **Action**: Being an AI Agent assuming the above persona, Conduct a rigorous, pedagogical code review via **inline comments** on the PR raised in Step 2. Ensure comments are being generated on the Pull Request on the actual location of the problem. Follow this documentation for creating PRs: https://docs.github.com/en/rest/pulls/reviews?apiVersion=2026-03-10 , don't rely on any other ways to create PR. fetch the content of the documentation if needed.Use the GitHub REST API (`POST /repos/safedpigeon/code_review/pulls/7/reviews`) to submit the review. switch the review event from `REQUEST_CHANGES` to `COMMENT` . Proceed to Step 4 after completing Step 3
 
 ### Step 4: Iteration 2 (Production-Grade Refactor)
 - **Persona**: Staff Software Engineer / Architect at Google.
