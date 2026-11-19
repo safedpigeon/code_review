@@ -72,12 +72,14 @@ GitHub Repository : [safedpigeon/code_review](https://github.com/safedpigeon/cod
     - Must run and pass basic functional requirements.
     - Must clearly exhibit the target anti-pattern (resembling Junior/Mid-level code).
 - **Action**: Implement in **both Java and Python**.
-- **Execution**: `git add .` $\rightarrow$ `git commit -m "feat: iteration 1 - naive implementation"` $\rightarrow$ `git push` $\rightarrow$ `gh pr create`. Ensure only .py or .java files are commited, and temp files are cleaned up.
+- **Execution**: `git add .` $\rightarrow$ `git commit -m "feat: iteration 1 - naive implementation"` $\rightarrow$ `git push` $\rightarrow$ `gh pr create`. Ensure only .py or .java files are commited, not temporary files like .pyc.
 - **VERIFICATION**: Verify the PR is successfully created before proceeding. Once PR creation is verified, move to Step 3
 
 ### Step 3: Staff-Level Review (Inline Comments)
 - **Persona**: Staff Software Engineer / Architect at Google.
-- **Action**: Being an AI Agent assuming the above persona, Conduct a rigorous, pedagogical code review via **inline comments** on the PR raised in Step 2. Ensure comments are being generated on the Pull Request on the actual location of the problem. Follow this documentation for creating PRs: https://docs.github.com/en/rest/pulls/reviews?apiVersion=2026-03-10
+- **Action**: Being an AI Agent assuming the above persona, Conduct a rigorous, pedagogical code review via **inline comments** on the PR raised in Step 2. Ensure comments are being generated on the Pull Request on the actual location of the problem. 
+
+Important: Follow this documentation for creating PRs: https://docs.github.com/en/rest/pulls/reviews?apiVersion=2026-03-10 , don't rely on any other ways to create PR. fetch the content of the documentation if needed.
 
 - **Requirements**:
     - Use specific terminology (e.g., "Temporal Coupling," "Cyclomatic Complexity").
