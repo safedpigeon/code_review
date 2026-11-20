@@ -2,12 +2,15 @@ package module_4.problem_1.java;
 
 public class Main {
     public static void main(String[] args) {
-        User user = new User("John Doe", "john@example.com");
-        user.save();
+        UserRepository userRepository = new UserRepository();
 
-        User foundUser = User.findById(1);
+        User user = new User("John Doe", "john@example.com");
+        userRepository.save(user);
+
+        User foundUser = userRepository.findById(1);
         System.out.println("Found User: " + foundUser.getName());
 
-        user.delete();
+        userRepository.delete(user);
     }
 }
+
