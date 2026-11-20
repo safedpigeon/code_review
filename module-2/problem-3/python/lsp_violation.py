@@ -1,44 +1,43 @@
-class Rectangle:
-    def __init__(self):
-        self.width = 0
-        self.height = 0
+from abc import ABC, abstractmethod
 
-    def set_width(self, width):
-        self.width = width
+class Shape(ABC):
+    @abstractmethod
+    def get_area(self):
+        pass
 
-    def set_height(self, height):
-        self.height = height
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self._width = width
+        self._height = height
 
-    def get_width(self):
-        return self.width
+    @property
+    def width(self):
+        return self._width
 
-    def get_height(self):
-        return self.height
+    @property
+    def height(self):
+        return self._height
 
     def get_area(self):
-        return self.width * self.height
+        return self._width * self._height
 
-class Square(Rectangle):
-    def set_width(self, width):
-        self.width = width
-        self.height = width
+class Square(Shape):
+    def __init__(self, side):
+        self._side = side
 
-    def set_height(self, height):
-        self.width = height
-        self.height = height
+    @property
+    def side(self):
+        return self._side
 
-def resize(rect):
-    rect.set_width(5)
-    rect.set_height(10)
-    # For a rectangle, area should be 5 * 10 = 50
-    if rect.get_area() != 50:
-        print(f"LSP Violation detected! Expected area 50, but got {rect.get_area()}")
-    else:
-        print(f"Area is correct: {rect.get_area()}")
+    def get_area(self):
+        return self._side * self._side
+
+def print_area(shape: Shape):
+    print(f"Area: {shape.get_area()}")
 
 if __name__ == "__main__":
     print("Testing with Rectangle:")
-    resize(Rectangle())
+    print_area(Rectangle(5, 10))
 
     print("\nTesting with Square:")
-    resize(Square())
+    print_area(Square(5))
