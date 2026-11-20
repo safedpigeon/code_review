@@ -1,11 +1,5 @@
-from machine import IMachine
+from machine import IPrinter
 
-class BasicPrinter(IMachine):
+class BasicPrinter(IPrinter):
     def print_doc(self, document: str):
         print(f"Printing: {document}")
-
-    def scan_doc(self, document: str):
-        raise NotImplementedError("BasicPrinter does not support scanning.")
-
-    def fax_doc(self, document: str):
-        raise NotImplementedError("BasicPrinter does not support faxing.")

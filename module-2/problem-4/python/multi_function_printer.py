@@ -1,6 +1,6 @@
-from machine import IMachine
+from machine import IPrinter, IScanner, IFax
 
-class MultiFunctionPrinter(IMachine):
+class MultiFunctionPrinter(IPrinter, IScanner, IFax):
     def print_doc(self, document: str):
         print(f"Printing: {document}")
 

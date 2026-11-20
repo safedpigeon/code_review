@@ -1,6 +1,6 @@
 package module_2.problem_4;
 
-public class MultiFunctionPrinter implements IMachine {
+public class MultiFunctionPrinter implements IPrinter, IScanner, IFax {
     @Override
     public void print(String document) {
         System.out.println("Printing: " + document);

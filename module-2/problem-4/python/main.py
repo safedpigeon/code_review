@@ -5,10 +5,9 @@ def main():
     basic_printer = BasicPrinter()
     basic_printer.print_doc("Hello World")
     
-    try:
-        basic_printer.scan_doc("Hello World")
-    except NotImplementedError as e:
-        print(f"Caught expected error: {e}")
+    # The following would now cause an AttributeError, 
+    # which is the desired behavior of ISP:
+    # basic_printer.scan_doc("Hello World")
 
     mfp = MultiFunctionPrinter()
     mfp.print_doc("Test Doc")
