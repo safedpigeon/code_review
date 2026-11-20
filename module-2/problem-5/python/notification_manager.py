@@ -1,9 +1,8 @@
-from sms_service import SmsService
+from notification_service import NotificationService
 
 class NotificationManager:
-    def __init__(self):
-        # Tight coupling: NotificationManager creates its own dependency
-        self.sms_service = SmsService()
+    def __init__(self, notification_service: NotificationService):
+        self.notification_service = notification_service
 
-    def send_notification(self, message: str, phone: str):
-        self.sms_service.send_sms(message, phone)
+    def send_notification(self, message: str, destination: str):
+        self.notification_service.send(message, destination)

@@ -1,14 +1,13 @@
 package module2.problem5;
 
 public class NotificationManager {
-    private SmsService smsService;
+    private NotificationService notificationService;
 
-    public NotificationManager() {
-        // Tight coupling: NotificationManager creates its own dependency
-        this.smsService = new SmsService();
+    public NotificationManager(NotificationService notificationService) {
+        this.notificationService = notificationService;
     }
 
-    public void sendNotification(String message, String phone) {
-        smsService.sendSms(message, phone);
+    public void sendNotification(String message, String destination) {
+        notificationService.send(message, destination);
     }
 }
