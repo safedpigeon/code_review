@@ -1,0 +1,46 @@
+{
+  "body": "The OrderProcessor class is a classic example of a 'God Object' or a violation of the Single Responsibility Principle (SRP). It is currently handling validation, pricing, persistence, and notifications. Each of these should be moved to a specialized service.",
+  "event": "COMMENT",
+  "comments": [
+    {
+      "path": "module-2/problem-1/java/OrderProcessor.java",
+      "line": 6,
+      "body": "This class is taking on too many responsibilities. The validation of the order should be encapsulated in its own validator class or within the Order domain object itself."
+    },
+    {
+      "path": "module-2/problem-1/java/OrderProcessor.java",
+      "line": 13,
+      "body": "Pricing and tax calculation logic is business-critical and likely to change. Moving this to a PricingService or TaxCalculator would improve maintainability."
+    },
+    {
+      "path": "module-2/problem-1/java/OrderProcessor.java",
+      "line": 20,
+      "body": "The OrderProcessor should not know how to save an order to a database. This is a clear violation of SRP. Introduce an OrderRepository to handle persistence."
+    },
+    {
+      "path": "module-2/problem-1/java/OrderProcessor.java",
+      "line": 24,
+      "body": "Sending emails is an infrastructure concern. This should be delegated to a NotificationService to keep the business logic clean."
+    },
+    {
+      "path": "module-2/problem-1/python/order_processor.py",
+      "line": 3,
+      "body": "This class is taking on too many responsibilities. The validation of the order should be encapsulated in its own validator class or within the Order domain object itself."
+    },
+    {
+      "path": "module-2/problem-1/python/order_processor.py",
+      "line": 7,
+      "body": "Pricing and tax calculation logic is business-critical and likely to change. Moving this to a PricingService or TaxCalculator would improve maintainability."
+    },
+    {
+      "path": "module-2/problem-1/python/order_processor.py",
+      "line": 12,
+      "body": "The OrderProcessor should not know how to save an order to a database. This is a clear violation of SRP. Introduce an OrderRepository to handle persistence."
+    },
+    {
+      "path": "module-2/problem-1/python/order_processor.py",
+      "line": 16,
+      "body": "Sending emails is an infrastructure concern. This should be delegated to a NotificationService to keep the business logic clean."
+    }
+  ]
+}
