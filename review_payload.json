@@ -1,0 +1,16 @@
+{
+  "body": "The implementation is functionally correct, but it introduces a classic N+1 query problem. This will lead to severe performance degradation as the number of users grows. Please refactor to use a more efficient data retrieval strategy.",
+  "event": "COMMENT",
+  "comments": [
+    {
+      "path": "module-4/problem-17/python/main.py",
+      "line": 39,
+      "body": "🚨 N+1 Query Problem: You are performing a database query for every single user in the loop. If you have 1,000 users, you'll execute 1,001 queries. Consider using a JOIN or fetching all posts for these users in a single query using an IN clause."
+    },
+    {
+      "path": "module-4/problem-17/java/src/com/curriculum/m4p17/UserService.java",
+      "line": 23,
+      "body": "🚨 N+1 Query Problem: This is a textbook example of the N+1 problem. The database will be hammered with repeated requests for posts. Refactor the PostRepository to support bulk fetching or use a JOIN in a custom query to retrieve users and their posts in one go."
+    }
+  ]
+}

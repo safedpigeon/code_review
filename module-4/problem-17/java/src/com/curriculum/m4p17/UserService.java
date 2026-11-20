@@ -13,13 +13,28 @@ public class UserService {
 
     public List<Map<String, Object>> getUsersWithPosts() {
         List<User> users = userRepo.getAllUsers();
-        List<Map<String, Object>> result = new ArrayList<>();
         
+        // Collect all user IDs to avoid N+1
+        List<Integer> userIds = new ArrayList<>();
         for (User user : users) {
-            List<Post> posts = postRepo.getPostsByUserId(user.getId());
+            userIds.add(user.getId());
+        }
+        
+        // Bulk fetch posts for all users
+        List<Post> allPosts = postRepo.getPostsByUserIds(userIds);
+        
+        // Group posts by user ID
+        Map<Integer, List<Post>> postsByUser = new HashMap<>();
+        for (Post post : allPosts) {
+            postsByUser.computeIfAbsent(post.getUserId(), k -> new ArrayList<>()).add(post);
+        }
+        
+        List<Map<String, Object>> result = new ArrayList<>();
+        for (User user : users) {
             Map<String, Object> entry = new HashMap<>();
             entry.put("user", user.getName());
             
+            List<Post> posts = postsByUser.getOrDefault(user.getId(), Collections.emptyList());
             List<String> postTitles = new ArrayList<>();
             for (Post p : posts) {
                 postTitles.add(p.getTitle());

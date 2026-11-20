@@ -31,6 +31,13 @@ class PostRepository:
         cursor.execute("SELECT id, user_id, title FROM posts WHERE user_id = ?", (user_id,))
         return [Post(row[0], row[1], row[2]) for row in cursor.fetchall()]
 
+    def get_posts_by_user_ids(self, user_ids):
+        print(f"Executing: SELECT * FROM posts WHERE user_id IN ({','.join(map(str, user_ids))})")
+        cursor = self.conn.cursor()
+        query = f"SELECT id, user_id, title FROM posts WHERE user_id IN ({','.join(['?'] * len(user_ids))})"
+        cursor.execute(query, user_ids)
+        return [Post(row[0], row[1], row[2]) for row in cursor.fetchall()]
+
 class UserService:
     def __init__(self, user_repo, post_repo):
         self.user_repo = user_repo
@@ -38,9 +45,21 @@ class UserService:
 
     def get_users_with_posts(self):
         users = self.user_repo.get_all_users()
+        
+        # Collect all user IDs to avoid N+1
+        user_ids = [user.id for user in users]
+        
+        # Bulk fetch posts for all users
+        all_posts = self.post_repo.get_posts_by_user_ids(user_ids)
+        
+        # Group posts by user ID
+        posts_by_user = {}
+        for post in all_posts:
+            posts_by_user.setdefault(post.user_id, []).append(post)
+            
         result = []
         for user in users:
-            posts = self.post_repo.get_posts_by_user_id(user.id)
+            posts = posts_by_user.get(user.id, [])
             result.append({"user": user.name, "posts": [p.title for p in posts]})
         return result
 

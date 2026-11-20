@@ -19,4 +19,11 @@ public class PostRepository {
             .filter(p -> p.getUserId() == userId)
             .collect(Collectors.toList());
     }
+
+    public List<Post> getPostsByUserIds(List<Integer> userIds) {
+        System.out.println("Executing: SELECT * FROM posts WHERE user_id IN (" + userIds + ")");
+        return mockDb.stream()
+            .filter(p -> userIds.contains(p.getUserId()))
+            .collect(Collectors.toList());
+    }
 }
