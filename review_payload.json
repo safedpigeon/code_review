@@ -1,0 +1,26 @@
+{
+  "event": "COMMENT",
+  "body": "Staff-level review for M3P1: The Singleton Trap. Please address the following concerns regarding tight coupling and testability.",
+  "comments": [
+    {
+      "path": "module-3/problem-1/java/src/main/java/com/curriculum/singleton/DatabaseManager.java",
+      "line": 13,
+      "body": "The Singleton pattern here introduces global state, which makes unit testing difficult. How would you test a class that depends on this without actually connecting to a real database?"
+    },
+    {
+      "path": "module-3/problem-1/java/src/main/java/com/curriculum/singleton/UserService.java",
+      "line": 8,
+      "body": "TIGHT COUPLING: By calling DatabaseManager.getInstance() directly, UserService is now hard-wired to a specific implementation. This violates the Dependency Inversion Principle. Consider how you could inject this dependency instead."
+    },
+    {
+      "path": "module-3/problem-1/python/database_manager.py",
+      "line": 3,
+      "body": "In Python, implementing a Singleton via __new__ is often overkill and can lead to confusing behavior. A simpler approach is usually module-level instantiation or using a Dependency Injection framework."
+    },
+    {
+      "path": "module-3/problem-1/python/user_service.py",
+      "line": 7,
+      "body": "Similar to the Java implementation, this is a classic case of tight coupling. The UserService should not be responsible for fetching its own dependencies. This makes the class impossible to unit test in isolation."
+    }
+  ]
+}
