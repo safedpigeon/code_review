@@ -1,17 +1,28 @@
 package module_2.problem_2;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class DiscountCalculator {
+    private final Map<Customer.CustomerType, DiscountStrategy> strategies = new HashMap<>();
+
+    public DiscountCalculator() {
+        // In a real production system, these could be injected via Spring/Guice
+        strategies.put(Customer.CustomerType.REGULAR, new RegularDiscountStrategy());
+        strategies.put(Customer.CustomerType.VIP, new VIPDiscountStrategy());
+        strategies.put(Customer.CustomerType.PREMIUM, new PremiumDiscountStrategy());
+    }
+
+    public void addStrategy(Customer.CustomerType type, DiscountStrategy strategy) {
+        strategies.put(type, strategy);
+    }
+
     public double calculateDiscount(Customer customer) {
-        switch (customer.getType()) {
-            case REGULAR:
-                return customer.getAmount() * 0.05;
-            case VIP:
-                return customer.getAmount() * 0.10;
-            case PREMIUM:
-                return customer.getAmount() * 0.20;
-            default:
-                return 0;
+        DiscountStrategy strategy = strategies.get(customer.getType());
+        if (strategy == null) {
+            return 0;
         }
+        return strategy.applyDiscount(customer.getAmount());
     }
 
     public static void main(String[] args) {
@@ -20,3 +31,4 @@ public class DiscountCalculator {
         System.out.println("Discount: " + calculator.calculateDiscount(customer));
     }
 }
+
