@@ -6,7 +6,9 @@ def main():
     phone = PhoneDisplay()
     window = WindowDisplay()
     
-    station = WeatherStation(phone, window)
+    station = WeatherStation()
+    station.register_observer(phone)
+    station.register_observer(window)
     
     print("Updating temperature to 25.5...")
     station.set_temperature(25.5)

@@ -1,17 +1,22 @@
-from phone_display import PhoneDisplay
-from window_display import WindowDisplay
+from observer import Observer
+from typing import List
 
 class WeatherStation:
-    def __init__(self, phone_display: PhoneDisplay, window_display: WindowDisplay):
+    def __init__(self):
         self.temperature = 0.0
-        self.phone_display = phone_display
-        self.window_display = window_display
+        self.observers: List[Observer] = []
+
+    def register_observer(self, observer: Observer):
+        if observer not in self.observers:
+            self.observers.append(observer)
+
+    def remove_observer(self, observer: Observer):
+        self.observers.remove(observer)
 
     def set_temperature(self, temperature):
         self.temperature = temperature
-        self.notify_displays()
+        self.notify_observers()
 
-    def notify_displays(self):
-        # Tight coupling: WeatherStation depends on concrete display classes
-        self.phone_display.update(self.temperature)
-        self.window_display.show_temperature(self.temperature)
+    def notify_observers(self):
+        for observer in self.observers:
+            observer.update(self.temperature)
