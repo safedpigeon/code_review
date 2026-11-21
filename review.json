@@ -1,0 +1,16 @@
+{
+  "body": "Staff-level review: Focus on OCP violation",
+  "event": "COMMENT",
+  "comments": [
+    {
+      "path": "module-2/problem-2/java/DiscountCalculator.java",
+      "line": 6,
+      "body": "This switch statement is a classic violation of the Open/Closed Principle. Every time we introduce a new customer type, we are forced to modify this method. This increases the risk of introducing regressions in existing logic. Consider using the Strategy Pattern to encapsulate the discount logic for each customer type."
+    },
+    {
+      "path": "module-2/problem-2/python/discount_calculator.py",
+      "line": 6,
+      "body": "Similar to the Java implementation, this if-elif chain violates OCP. The calculator class should be closed for modification but open for extension. By delegating the discount calculation to a strategy object, we can add new types without touching this class."
+    }
+  ]
+}
