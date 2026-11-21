@@ -1,0 +1,26 @@
+{
+  "event": "COMMENT",
+  "body": "The current implementation suffers from Leaky Abstractions. The business layer (Service) is directly coupled to the persistence layer's internal data representations (DbResultSet in Java, sqlite3.Cursor in Python). This makes the system fragile, hard to test, and difficult to migrate to a different data store.",
+  "comments": [
+    {
+      "path": "module-4/problem-3/java/src/com/curriculum/m4p3/ProductService.java",
+      "line": 21,
+      "body": "🚨 Leaky Abstraction: The service layer is directly dependent on `DbResultSet`, which is a persistence-specific detail. The repository should return domain objects (e.g., `List<Product>`) instead."
+    },
+    {
+      "path": "module-4/problem-3/java/src/com/curriculum/m4p3/ProductService.java",
+      "line": 24,
+      "body": "🚨 Leaky Abstraction: The service layer is responsible for mapping raw database values to domain properties. This mapping logic belongs in the persistence layer."
+    },
+    {
+      "path": "module-4/problem-3/python/service.py",
+      "line": 12,
+      "body": "🚨 Leaky Abstraction: The service is receiving a `sqlite3.Cursor`. This couples the business logic to a specific database implementation. Use a Repository pattern that returns domain models."
+    },
+    {
+      "path": "module-4/problem-3/python/service.py",
+      "line": 15,
+      "body": "🚨 Leaky Abstraction: Accessing data by index (`row[0]`, `row[1]`) leaks the database schema. If the table columns are reordered, this code will break."
+    }
+  ]
+}
