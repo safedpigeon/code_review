@@ -1,0 +1,36 @@
+{
+  "body": "This implementation follows the Active Record pattern, which is often considered an anti-pattern in complex systems. The User entity is taking on too many responsibilities: it represents the data, it handles business logic, AND it manages its own persistence. This violates the Single Responsibility Principle (SRP) and makes the code difficult to test and maintain. We should move towards a Data Mapper or Repository pattern to decouple the domain model from the persistence layer.",
+  "event": "COMMENT",
+  "comments": [
+    {
+      "path": "module-4/problem-1/java/User.java",
+      "line": 6,
+      "body": "This is a classic 'God Object' smell. The User entity is now responsible for managing the database connection and storage. This violates the Single Responsibility Principle (SRP). If we change the database to PostgreSQL or MongoDB, we have to modify the User class."
+    },
+    {
+      "path": "module-4/problem-1/java/User.java",
+      "line": 24,
+      "body": "The Active Record pattern allows the object to persist itself. While convenient for small apps, it couples your domain model to your persistence layer. This makes unit testing difficult because you cannot test User logic without a database (or a static mock)."
+    },
+    {
+      "path": "module-4/problem-1/java/User.java",
+      "line": 31,
+      "body": "Static factory methods for retrieval further couple the domain entity to the storage mechanism. Consider moving this to a Repository pattern."
+    },
+    {
+      "path": "module-4/problem-1/python/user.py",
+      "line": 2,
+      "body": "Storing the data inside the class itself creates a tight coupling between the User model and the persistence mechanism. This makes it hard to swap the storage backend."
+    },
+    {
+      "path": "module-4/problem-1/python/user.py",
+      "line": 11,
+      "body": "This is the Active Record anti-pattern. The entity should be a simple data carrier (POJO/POPO), and persistence should be handled by a separate service or repository."
+    },
+    {
+      "path": "module-4/problem-1/python/user.py",
+      "line": 20,
+      "body": "Using class methods for data access couples the domain logic to the database. This hinders testability and scalability."
+    }
+  ]
+}
