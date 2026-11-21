@@ -9,17 +9,20 @@ public class OrderService {
         String orderId = UUID.randomUUID().toString();
         Order order = new Order(orderId, productId, quantity);
         
-        // Naive implementation: Save order first, then deduct stock.
-        // No transaction wrapper.
+        // Corrected implementation: Using a compensating transaction (Saga pattern)
         System.out.println("[OrderService] Creating order: " + order);
-        Database.getInstance().orders.add(order.getOrderId());
+        Database.getInstance().orders.add(orderId);
         
         try {
             inventoryService.deductStock(productId, quantity);
             System.out.println("[OrderService] Order placed successfully!");
         } catch (Exception e) {
             System.err.println("[OrderService] Error while placing order: " + e.getMessage());
-            // Naive mistake: We forget to roll back the order creation in Database.
+            
+            // COMPENSATING TRANSACTION: Undo the order creation to maintain consistency.
+            System.out.println("[OrderService] Rolling back order " + orderId + " due to failure...");
+            Database.getInstance().orders.remove(orderId);
+            
             throw e;
         }
     }

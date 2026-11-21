@@ -26,7 +26,7 @@ def main():
     print(f"Orders in DB: {db.orders}")
     print(f"Inventory in DB: {db.inventory}")
     
-    print("\nObservation: Notice how orders were added to the DB even when the transaction failed!")
+    print("\nObservation: The system now maintains atomicity. Failed orders are rolled back and do not persist in the database.")
 
 if __name__ == "__main__":
     main()

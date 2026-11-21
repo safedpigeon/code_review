@@ -11,7 +11,7 @@ class OrderService:
         order_id = str(uuid.uuid4())
         order = Order(order_id, product_id, quantity)
         
-        # Naive implementation: Save order first, then deduct stock.
+        # Corrected implementation: Using a compensating transaction (Saga pattern)
         print(f"[OrderService] Creating order: {order}")
         db.orders.append(order_id)
         
@@ -20,5 +20,9 @@ class OrderService:
             print("[OrderService] Order placed successfully!")
         except Exception as e:
             print(f"[OrderService] Error while placing order: {str(e)}")
-            # Naive mistake: We forget to roll back the order creation in db.orders.
+            
+            # COMPENSATING TRANSACTION: Undo the order creation to maintain consistency.
+            print(f"[OrderService] Rolling back order {order_id} due to failure...")
+            db.orders.remove(order_id)
+            
             raise e
