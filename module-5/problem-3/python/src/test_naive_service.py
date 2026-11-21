@@ -19,13 +19,11 @@ def test_functional():
     print(f"Expected: User(user_id='1', username='alice', email='alice@example.com'), Got: {user}")
     assert user is not None and user.username == 'alice'
     
-    # Demonstrate vulnerability (SQL Injection)
-    # This input should bypass the ID check and potentially return the first user or all users
-    # if the query were different, but here it'll just be an invalid ID unless we inject ' OR '1'='1
+    # Test that vulnerability is fixed (SQL Injection should no longer work)
     malicious_id = "' OR '1'='1"
     user_vuln = service.get_user_by_id(malicious_id)
     print(f"Malicious input: {malicious_id}, Got: {user_vuln}")
-    assert user_vuln is not None # Should return a user because of the injection
+    assert user_vuln is None # Should NOT return a user now that it is fixed
 
 if __name__ == "__main__":
     test_functional()

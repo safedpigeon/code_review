@@ -14,14 +14,14 @@ public class NaiveUserService {
      * Note: This is a naive implementation intended for educational purposes.
      */
     public User getUserById(String userId) throws SQLException {
-        // VULNERABILITY: SQL Injection via string concatenation. 
-        // A junior developer might do this thinking it's the simplest way to build a query.
-        String query = "SELECT id, username, email FROM users WHERE id = '" + userId + "'";
+        // FIXED: Using PreparedStatement to prevent SQL Injection.
+        String query = "SELECT id, username, email FROM users WHERE id = ?";
         
-        System.out.println("Executing query: " + query);
+        System.out.println("Executing query: " + query + " with parameter: " + userId);
         
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(query);
+        PreparedStatement pstmt = connection.prepareStatement(query);
+        pstmt.setString(1, userId);
+        ResultSet resultSet = pstmt.executeQuery();
         
         if (resultSet.next()) {
             return new User(

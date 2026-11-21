@@ -18,13 +18,15 @@ public class NaiveUserServiceTest {
             User user = service.getUserById("1");
             System.out.println("Expected: User{id='1', username='alice', email='alice@example.com'}, Got: " + user);
 
-            // Demonstrate vulnerability (SQL Injection)
+            // Test that vulnerability is fixed (SQL Injection should no longer work)
             String maliciousId = "' OR '1'='1";
             User userVuln = service.getUserById(maliciousId);
             System.out.println("Malicious input: " + maliciousId + ", Got: " + userVuln);
             
-            if (userVuln != null) {
-                System.out.println("Functional tests passed (including vulnerability demonstration)!");
+            if (userVuln == null) {
+                System.out.println("Security tests passed (vulnerability fixed)!");
+            } else {
+                System.out.println("Security tests FAILED: Vulnerability still exists!");
             }
 
             conn.close();

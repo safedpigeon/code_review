@@ -18,13 +18,12 @@ class NaiveUserService:
         """
         cursor = self.conn.cursor()
         
-        # VULNERABILITY: SQL Injection via f-string formatting.
-        # Common mistake for beginners who are not aware of parameterized queries.
-        query = f"SELECT id, username, email FROM users WHERE id = '{user_id}'"
+        # FIXED: Using parameterized queries to prevent SQL Injection.
+        query = "SELECT id, username, email FROM users WHERE id = ?"
         
-        print(f"Executing query: {query}")
+        print(f"Executing query: {query} with parameter: {user_id}")
         
-        cursor.execute(query)
+        cursor.execute(query, (user_id,))
         row = cursor.fetchone()
         
         if row:
