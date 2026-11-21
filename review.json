@@ -1,0 +1,26 @@
+{
+  "event": "COMMENT",
+  "body": "Staff Review: While the code is functionally correct for single-threaded scenarios, it is unsafe for concurrent use. This is a prime example of a Race Condition.",
+  "comments": [
+    {
+      "path": "module-4/problem-5/java/src/main/java/com/curriculum/m4p5/SharedAccount.java",
+      "line": 12,
+      "body": "This method is not thread-safe. If multiple threads call deposit() simultaneously, they may all read the same initial balance before any of them update it, leading to lost deposits. Look into the `synchronized` keyword in Java."
+    },
+    {
+      "path": "module-4/problem-5/java/src/main/java/com/curriculum/m4p5/SharedAccount.java",
+      "line": 16,
+      "body": "The read-modify-write cycle here is not atomic. The time elapsed between line 13 and line 16 (especially with the sleep) creates a race window. The update must be atomic relative to other threads."
+    },
+    {
+      "path": "module-4/problem-5/python/src/shared_account.py",
+      "line": 13,
+      "body": "This method lacks synchronization. Despite Python having a GIL, the GIL only ensures one thread executes Python bytecode at a time; it does not prevent race conditions in your application logic. Consider using `threading.Lock`."
+    },
+    {
+      "path": "module-4/problem-5/python/src/shared_account.py",
+      "line": 17,
+      "body": "This update is non-atomic. Another thread could have updated `self.balance` between line 14 and line 17. You need a mechanism to ensure that only one thread is inside this critical section at a time."
+    }
+  ]
+}
