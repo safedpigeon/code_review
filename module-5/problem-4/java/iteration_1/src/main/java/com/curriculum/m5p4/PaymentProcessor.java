@@ -1,6 +1,6 @@
 package com.curriculum.m5p4;
 
-import java.util.*;
+import java.util.Random;
 
 public class PaymentProcessor {
     public double processPayment(double amount, String currency, String region, String userType) {
@@ -12,16 +12,16 @@ public class PaymentProcessor {
         }
 
         double taxRate = 0.05;
-        if (region.equalsIgnoreCase("US")) {
+        if ("US".equalsIgnoreCase(region)) {
             taxRate = 0.10;
-        } else if (region.equalsIgnoreCase("EU")) {
+        } else if ("EU".equalsIgnoreCase(region)) {
             taxRate = 0.20;
         }
 
         double discount = 0.0;
-        if (userType.equalsIgnoreCase("PREMIUM")) {
+        if ("PREMIUM".equalsIgnoreCase(userType)) {
             discount = 0.10;
-        } else if (userType.equalsIgnoreCase("GOLD")) {
+        } else if ("GOLD".equalsIgnoreCase(userType)) {
             discount = 0.20;
         }
 
@@ -30,7 +30,7 @@ public class PaymentProcessor {
         System.out.println("Processing payment of " + finalAmount + " " + currency + " for region " + region);
         
         // Simulating a database call or external API call
-        if (Math.random() < 0.01) {
+        if (new Random().nextDouble() < 0.01) {
             throw new RuntimeException("Network error occurred during payment processing");
         }
 
