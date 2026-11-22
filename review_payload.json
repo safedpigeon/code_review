@@ -1,0 +1,26 @@
+{
+  "body": "Staff Review: Feature Envy. The Invoice class is too tightly coupled to the internal details of Customer and PricingPolicy. This is a classic example of 'Feature Envy' where a method seems more interested in a class other than the one it is in. We should move the logic to the classes that own the data.",
+  "event": "COMMENT",
+  "comments": [
+    {
+      "path": "module-6/problem-3/java/Invoice.java",
+      "line": 8,
+      "body": "This method is exhibiting 'Feature Envy'. It is more interested in the Customer's membership level than its own state. This logic should be encapsulated within the Customer class."
+    },
+    {
+      "path": "module-6/problem-3/java/Invoice.java",
+      "line": 14,
+      "body": "Again, the Invoice is making decisions based on Customer's internal data. Consider moving this logic to a method in the Customer class, such as customer.isLoyal()."
+    },
+    {
+      "path": "module-6/problem-3/python/invoice.py",
+      "line": 9,
+      "body": "Feature Envy detected. The Invoice class is reaching into the Customer object to determine the discount. The Customer class should be responsible for calculating its own membership-based discount."
+    },
+    {
+      "path": "module-6/problem-3/python/invoice.py",
+      "line": 14,
+      "body": "The logic for determining loyalty is leaked into the Invoice class. Move this to the Customer class to improve encapsulation."
+    }
+  ]
+}
