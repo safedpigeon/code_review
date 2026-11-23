@@ -14,46 +14,46 @@ Master the ability to review code through the lens of:
 - **Mentorship:** Is the feedback constructive and Socratic?
 
 ### Module 1: Foundational Clean Code & Architecture
-1.  **The God Class**: Decomposing monolithic classes into specialized services (Completed).
-2.  **Tight Coupling**: Replacing hard dependencies with Interfaces/Dependency Injection.
-3.  **Lack of Error Handling**: Moving from basic try-catch to global exception handling and custom error types.
-4.  **Hardcoded Configurations**: Implementing a centralized configuration management system.
-5.  **Inefficient Data Structures**: Optimizing time/space complexity in business logic.
+1.  **The God Class**: Decomposing monolithic classes into specialized services. [Link](https://github.com/safedpigeon/code_review/pull/2)
+2.  **Tight Coupling**: Replacing hard dependencies with Interfaces/Dependency Injection. [Link](https://github.com/safedpigeon/code_review/pull/3)
+3.  **Lack of Error Handling**: Moving from basic try-catch to global exception handling and custom error types. [Link](https://github.com/safedpigeon/code_review/pull/7)
+4.  **Hardcoded Configurations**: Implementing a centralized configuration management system. [Link](https://github.com/safedpigeon/code_review/pull/8)
+5.  **Inefficient Data Structures**: Optimizing time/space complexity in business logic. [Link](https://github.com/safedpigeon/code_review/pull/9)
 
 ### Module 2: Object-Oriented Design Patterns (SOLID)
-6.  **Single Responsibility Principle (SRP)**: Refactoring classes that do "too much."
-7.  **Open/Closed Principle (OCP)**: Using Strategy/Template patterns to allow extension without modification.
-8.  **Liskov Substitution Principle (LSP)**: Fixing broken inheritance hierarchies.
-9.  **Interface Segregation Principle (ISP)**: Splitting "Fat Interfaces" into lean, client-specific ones.
-10. **Dependency Inversion Principle (DIP)**: High-level modules depending on abstractions, not concretions.
+6.  **Single Responsibility Principle (SRP)**: Refactoring classes that do "too much." [Link](https://github.com/safedpigeon/code_review/pull/10)
+7.  **Open/Closed Principle (OCP)**: Using Strategy/Template patterns to allow extension without modification. [Link](https://github.com/safedpigeon/code_review/pull/11)
+8.  **Liskov Substitution Principle (LSP)**: Fixing broken inheritance hierarchies. [Link](https://github.com/safedpigeon/code_review/pull/12)
+9.  **Interface Segregation Principle (ISP)**: Splitting "Fat Interfaces" into lean, client-specific ones. [Link](https://github.com/safedpigeon/code_review/pull/13)
+10. **Dependency Inversion Principle (DIP)**: High-level modules depending on abstractions, not concretions. [Link](https://github.com/safedpigeon/code_review/pull/14)
 
 ### Module 3: Behavioral & Creational Patterns
-11. **The Singleton Trap**: Refactoring overused Singletons to Dependency Injection.
-12. **The Factory Pattern**: Managing complex object creation.
-13. **The Observer Pattern**: Decoupling event producers from consumers.
-14. **The Strategy Pattern**: Implementing interchangeable algorithms.
-15. **The Command Pattern**: Encapsulating requests as objects for undo/redo/queuing.
+11. **The Singleton Trap**: Refactoring overused Singletons to Dependency Injection. [Link](https://github.com/safedpigeon/code_review/pull/15)
+12. **The Factory Pattern**: Managing complex object creation. [Link](https://github.com/safedpigeon/code_review/pull/16)
+13. **The Observer Pattern**: Decoupling event producers from consumers. [Link](https://github.com/safedpigeon/code_review/pull/17)
+14. **The Strategy Pattern**: Implementing interchangeable algorithms. [Link](https://github.com/safedpigeon/code_review/pull/18)
+15. **The Command Pattern**: Encapsulating requests as objects for undo/redo/queuing. [Link](https://github.com/safedpigeon/code_review/pull/19)
 
 ### Module 4: Persistence & Data Access
-16. **The Active Record Anti-pattern**: Moving to Data Mapper/Repository patterns.
-17. **N+1 Query Problem**: Optimizing database access in loops.
-18. **Leaky Abstractions**: Preventing persistence details from bleeding into the business layer.
-19. **Transaction Management**: Ensuring ACID properties across service boundaries.
-20. **Concurrency Issues**: Solving race conditions and deadlocks in shared resources.
+16. **The Active Record Anti-pattern**: Moving to Data Mapper/Repository patterns. [Link](https://github.com/safedpigeon/code_review/pull/20)
+17. **N+1 Query Problem**: Optimizing database access in loops. [Link](https://github.com/safedpigeon/code_review/pull/21)
+18. **Leaky Abstractions**: Preventing persistence details from bleeding into the business layer. [Link](https://github.com/safedpigeon/code_review/pull/22)
+19. **Transaction Management**: Ensuring ACID properties across service boundaries. [Link](https://github.com/safedpigeon/code_review/pull/23)
+20. **Concurrency Issues**: Solving race conditions and deadlocks in shared resources. [Link](https://github.com/safedpigeon/code_review/pull/25)
 
 ### Module 5: Production-Grade Engineering
-21. **Lack of Logging/Observability**: Implementing structured logging and tracing.
-22. **Poor API Design**: Refactoring REST endpoints for consistency and versioning.
-23. **Security Vulnerabilities**: Fixing common flaws (e.g., SQL injection, XSS) via architectural guards.
-24. **Testing Debt**: Moving from "no tests" to a Pyramid approach (Unit $\rightarrow$ Integration $\rightarrow$ E2E).
-25. **Synchronous Bottlenecks**: Introducing Asynchronous processing/Message Queues.
+21. **Lack of Logging/Observability**: Implementing structured logging and tracing. 
+22. **Poor API Design**: Refactoring REST endpoints for consistency and versioning. 
+23. **Security Vulnerabilities**: Fixing common flaws (e.g., SQL injection, XSS) via architectural guards. [Link](https://github.com/safedpigeon/code_review/pull/26)
+24. **Testing Debt**: Moving from "no tests" to a Pyramid approach (Unit $\rightarrow$ Integration $\rightarrow$ E2E). [Link](https://github.com/safedpigeon/code_review/pull/27)
+25. **Synchronous Bottlenecks**: Introducing Asynchronous processing/Message Queues. 
 
 ### Module 6: Advanced Refactoring & Maintenance
-26. **Conditional Complexity**: Replacing deeply nested `if-else` with Polymorphism.
-27. **Primitive Obsession**: Introducing Value Objects to replace generic types.
-28. **Feature Envy**: Moving methods to the classes that own the data.
-29. **Dead Code & Technical Debt**: Systematic removal of unused logic and modernization.
-30. **The Capstone**: A full-scale refactor of a legacy system applying all previous lessons.
+26. **Conditional Complexity**: Replacing deeply nested `if-else` with Polymorphism. 
+27. **Primitive Obsession**: Introducing Value Objects to replace generic types. 
+28. **Feature Envy**: Moving methods to the classes that own the data. [Link](https://github.com/safedpigeon/code_review/pull/28)
+29. **Dead Code & Technical Debt**: Systematic removal of unused logic and modernization. 
+30. **The Capstone**: A full-scale refactor of a legacy system applying all previous lessons. 
 
 
 ## 🛠️ The Golden Path (Operational Workflow)
