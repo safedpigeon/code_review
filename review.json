@@ -1,0 +1,36 @@
+{
+  "body": "This implementation is functional but contains several architectural anti-patterns regarding configuration management. Please see my inline comments for details.",
+  "event": "COMMENT",
+  "comments": [
+    {
+      "path": "module-1/problem-4/java/PaymentService.java",
+      "line": 5,
+      "body": "⚠️ **Hardcoded Configuration**: The `API_URL` is hardcoded. This makes it difficult to switch between different environments (e.g., development, staging, production) without modifying the code."
+    },
+    {
+      "path": "module-1/problem-4/java/PaymentService.java",
+      "line": 6,
+      "body": "🛑 **Security Risk**: Never hardcode API keys or secrets in the source code. This can lead to credential leakage if the code is pushed to a public repository. Use environment variables or a secure secret manager."
+    },
+    {
+      "path": "module-1/problem-4/java/PaymentService.java",
+      "line": 7,
+      "body": "⚠️ **Magic Number**: The `TIMEOUT` value is hardcoded. This should be configurable to allow tuning based on network conditions without requiring a code change."
+    },
+    {
+      "path": "module-1/problem-4/python/payment_service.py",
+      "line": 5,
+      "body": "⚠️ **Hardcoded Configuration**: Similarly to the Java implementation, the `API_URL` should be externalized."
+    },
+    {
+      "path": "module-1/problem-4/python/payment_service.py",
+      "line": 6,
+      "body": "🛑 **Security Risk**: Hardcoding the `API_KEY` here is a critical security vulnerability."
+    },
+    {
+      "path": "module-1/problem-4/python/payment_service.py",
+      "line": 7,
+      "body": "⚠️ **Magic Number**: The `TIMEOUT` should be moved to a configuration file or environment variable."
+    }
+  ]
+}
