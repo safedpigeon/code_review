@@ -1,0 +1,42 @@
+{
+  "body": "The current implementation is functional but lacks production-grade error handling. It relies on generic exceptions and lacks a centralized strategy for failure management, which increases systemic risk and makes debugging difficult in a distributed environment. We need to move towards custom error types and a global exception handling mechanism.",
+  "event": "COMMENT",
+  "comments": [
+    {
+      "path": "module-1/problem-3/java/src/com/curriculum/payment/PaymentService.java",
+      "line": 9,
+      "body": "Avoid throwing generic `Exception`. Define custom domain exceptions (e.g., `InvalidPaymentAmountException`) to allow calling code to handle specific failure modes differently. This is key for architectural alignment and reliability.",
+      "side": "RIGHT"
+    },
+    {
+      "path": "module-1/problem-3/java/src/com/curriculum/payment/PaymentService.java",
+      "line": 16,
+      "body": "Catching `Exception` is a dangerous anti-pattern. It catches both checked and unchecked exceptions, including `RuntimeException`, potentially masking bugs like `NullPointerException`. Be explicit about what you are catching to ensure systemic reliability.",
+      "side": "RIGHT"
+    },
+    {
+      "path": "module-1/problem-3/java/src/com/curriculum/payment/PaymentService.java",
+      "line": 18,
+      "body": "Logging via `System.out` is unacceptable for production. Use a structured logging framework (e.g., SLF4J/Logback) to ensure observability and allow for proper log aggregation. This reduces the time-to-resolve (TTR) during production incidents.",
+      "side": "RIGHT"
+    },
+    {
+      "path": "module-1/problem-3/python/payment_service.py",
+      "line": 10,
+      "body": "Generic `Exception` should be avoided. Implement custom exception classes that inherit from a base `PaymentError` to improve type safety and error granularity.",
+      "side": "RIGHT"
+    },
+    {
+      "path": "module-1/problem-3/python/payment_service.py",
+      "line": 15,
+      "body": "Broad except blocks mask unexpected errors. Specify the exact exceptions you expect from the gateway and the business logic to avoid hiding critical system failures.",
+      "side": "RIGHT"
+    },
+    {
+      "path": "module-1/problem-3/python/payment_service.py",
+      "line": 17,
+      "body": "Avoid print statements for error reporting. Use the `logging` module to provide timestamps, log levels, and trace IDs for better observability in production.",
+      "side": "RIGHT"
+    }
+  ]
+}
